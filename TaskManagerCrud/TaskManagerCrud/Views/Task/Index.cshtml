@@ -1,0 +1,52 @@
+﻿@model List<TaskManagerCrud.Models.TaskModel>
+
+@{
+    ViewData["Title"] = "Task List";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Task List</h2>
+
+    <!-- Create Button -->
+    <a asp-action="Create" class="btn btn-success mb-3">Create New Task</a>
+
+    <table class="table table-striped table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Due Time</th>
+                <th>Created</th>
+                <th>Status</th>
+                <th>Actions</th> <!-- Column for buttons -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var task in Model)
+            {
+                <tr>
+                    <td>@task.Name</td>
+                    <td>@task.Description</td>
+                    <td>@task.DueTime.ToString("dd.MM.yyyy HH:mm")</td>
+                    <td>@task.CreatedDate.ToString("dd.MM.yyyy HH:mm")</td>
+                    <td>
+                        @if (task.IsCompleted)
+                        {
+                            <span class="badge bg-success">Completed</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning text-dark">In Progress</span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@task.Id" class="btn btn-sm btn-primary me-2">Edit</a>
+                        <form asp-action="Delete" asp-route-id="@task.Id" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this task?');">
+                            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

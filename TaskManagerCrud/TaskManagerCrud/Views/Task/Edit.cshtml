@@ -1,0 +1,42 @@
+﻿@model TaskModelDto
+
+@{
+    ViewData["Title"] = "Edit task ";
+}
+
+<div class="container mt-5">
+    <h2>Edit Task</h2>
+    <form asp-action="Edit" method="post" class="mt-4">
+        <div class="mb-3">
+            <label asp-for="Name" class="form-label"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Description" class="form-label"></label>
+            <input asp-for="Description" class="form-control" />
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="DueTime" class="form-label"></label>
+            <input asp-for="DueTime" type="datetime-local" class="form-control" />
+            <span asp-validation-for="DueTime" class="text-danger"></span>
+        </div>
+
+        <div class="form-check mb-3">
+            <input asp-for="IsCompleted" class="form-check-input" />
+            <label asp-for="IsCompleted" class="form-check-label"></label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Edit</button>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </form>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
