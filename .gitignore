@@ -228,4 +228,6 @@ __pycache__/
 
 # Windows thumbnail cache files
 Thumbs.db
-TaskManagerCrud\.vs
+TaskManagerCrud/.vs
+BlogApi/.vs
+
